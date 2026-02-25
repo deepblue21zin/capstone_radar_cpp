@@ -39,3 +39,75 @@
 
 # debug information files
 *.dwo
+
+# ============================================================
+# Build & CMake artifacts
+# ============================================================
+build/
+cmake-build-debug/
+cmake-build-release/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+Testing/
+
+# ============================================================
+# IDE & Editor configurations
+# ============================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.clion.sh
+
+# ============================================================
+# Temporary & OS files
+# ============================================================
+*.tmp
+*.log
+*.bak
+*.backup
+Thumbs.db
+.AppleDouble
+.LSOverride
+*.stackdump
+
+# ============================================================
+# Python artifacts (if Python tools are used)
+# ============================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# ============================================================
+# Windows/Visual Studio specific
+# ============================================================
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.openpdb
+win32/
+x64/
+Debug/
+Release/
+
+# ============================================================
+# Documentation build output
+# ============================================================
+docs/_build/
+html/
+latex/
+

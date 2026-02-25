@@ -1,2 +1,0 @@
-# capstone_radar_cpp
-capstone_radar_cpp

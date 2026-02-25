@@ -1,0 +1,103 @@
+# Default configuration for RadarTracker
+
+# ============================================================
+# Preprocessing Module Configuration
+# ============================================================
+preprocessing:
+  # Speed filtering
+  min_speed_threshold: 0.2  # m/s - Remove static objects
+  
+  # Distance filtering
+  max_range: 12.0           # m - Maximum detection range
+  
+  # Height filtering (e.g., car height)
+  height:
+    min: 0.0                # m
+    max: 2.5                # m
+  
+  # Lateral region of interest (ROI)
+  boundary_box:
+    x_min: -2.0             # m
+    x_max: 2.0              # m
+    y_min: 0.5              # m
+    y_max: 8.0              # m
+  
+  # Signal quality
+  min_snr: 10.0             # dB - Minimum signal-to-noise ratio
+
+# ============================================================
+# Clustering Module Configuration
+# ============================================================
+clustering:
+  # DBSCAN parameters
+  epsilon: 0.8              # m - Neighborhood radius
+  min_pts: 1                # - Minimum points for core point
+  
+  # Quality score weighting
+  quality_weight: 0.3
+
+# ============================================================
+# Tracking Module Configuration
+# ============================================================
+tracking:
+  # Kalman Filter parameters
+  kalman_filter:
+    # Process noise covariance Q (diagonal)
+    process_noise:
+      position: 0.01        # m² - Position jitter
+      velocity: 0.25        # (m/s)² - Velocity jitter
+      acceleration: 1.0     # (m/s²)² - Acceleration jitter
+    
+    # Measurement noise covariance R (diagonal)
+    measurement_noise:
+      position: 0.04        # m² - (0.2m std)
+  
+  # Track management
+  track_management:
+    confirmation_frames: 3      # Frames to confirm track
+    max_consecutive_miss: 5     # Frames to delete track
+    max_track_age: 300          # Maximum track lifetime (frames)
+    
+    # For 30 FPS: 300 frames = ~10 seconds
+    # For 15 FPS: 300 frames = ~20 seconds
+
+# ============================================================
+# System Configuration
+# ============================================================
+system:
+  # Frame rate (Hz)
+  frame_rate: 30
+  
+  # Enable features
+  enable_visualization: false
+  enable_logging: true
+  debug_mode: false
+  
+  # Performance monitoring
+  performance_monitoring:
+    sample_window: 100        # Frames for FPS averaging
+    print_interval: 30        # Print stats every N frames
+
+# ============================================================
+# Hardware Configuration
+# ============================================================
+hardware:
+  # IWR6843ISK sensor
+  sensor:
+    type: "IWR6843ISK"
+    frequency: 60             # GHz
+    
+  # Serial communication
+  serial:
+    config_port: "COM13"      # Configuration port (Windows)
+    data_port: "COM14"        # Data port (Windows)
+    baudrate: 921600
+    
+    # For Linux: /dev/ttyUSB0, /dev/ttyUSB1
+  
+  # Target platform
+  platform: "windows"         # Options: "windows", "jetson_nano", "jetson_xavier"
+  
+  # Compute settings
+  num_threads: 2              # Number of processing threads
+  cpu_affinity: false         # Enable CPU affinity (Linux only)
